@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api', require('./api'))
 
 app.get('*', (req, res) => {
-  res.send("Hello Ya'll")
+  res.send("We are serving Helper.")
 })
 
 // error handling middleware
@@ -35,7 +35,7 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 3000;
  // this can be very useful if you deploy to Heroku!
 
-db.sync()
+db.sync({ force: true })
   .then(() => {
     console.log('db synced')
     app.listen(port, function () {
