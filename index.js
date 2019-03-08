@@ -5,8 +5,6 @@ const express = require('express')
 const volleyball = require('volleyball')
 const morgan = require('morgan');
 
-const db = require('./db.js')
-
 const app = express()
 
 // logging middleware
@@ -35,13 +33,9 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 3000;
  // this can be very useful if you deploy to Heroku!
 
-db.sync({ force: true })
-  .then(() => {
-    console.log('db synced')
-    app.listen(port, function () {
-      console.log(`I am practicing active listening on port ${port}`)
-    })
-  })
+app.listen(port, function () {
+ console.log(`I am practicing active listening on port ${port}`)
+})
 
 // if you update your db schemas, make sure you drop the tables first and then recreate them
 
