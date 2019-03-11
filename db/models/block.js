@@ -7,7 +7,7 @@ const Block = db.define('block',
       type: Sequelize.TEXT,
       allowNull: true
     },
-    expectedDuration: Sequelize.INTEGER,
+    expectedDuration: Sequelize.STRING,
     priority: {
       type: Sequelize.STRING,
       validate: {
@@ -16,6 +16,7 @@ const Block = db.define('block',
     },
     status: {
       type: Sequelize.STRING,
+      defaultValue: 'active',
       validate: {
         isIn: [['active', 'paused', 'retired']]
       }
@@ -40,12 +41,6 @@ const Block = db.define('block',
       type: Sequelize.BOOLEAN,
       defaultValue: false,
     },
-    category: {
-      type: Sequelize.STRING,
-      validate: {
-        isIn: [['weekend', 'weekday']]
-      }
-    }
   },
   {
     defaultScope: {
